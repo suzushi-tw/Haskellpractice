@@ -23,6 +23,13 @@ a `compare` b
     | a==b =EQ
     | a<b = LT
 
+say :: (Show a)=> [a]->String
+say xs = case xs of []-> "empty list"
+                    [x]->"1 element" ++ show x
+                    [x,y]->"2 elements:" ++ show x ++ "," ++ show y
+                    (x:y:_)->"first two elements: " ++ show x  ++ "," ++ show y
+
+
 main :: IO()
 main = do
     putStrLn "Calculate BMI"
@@ -43,4 +50,7 @@ main = do
     putStrLn "Random let in numbers"
     putStrLn $ show num ++ " " ++ show sum
     putStrLn $ show squares ++ " " ++ show products
+
+    print(say "12")
+    print(say "test")
 
