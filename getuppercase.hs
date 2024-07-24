@@ -24,3 +24,19 @@ main=do
     let ns=["tom", "jack", "ben"]
     print([a++ " " ++n | a<-adj, n<-ns ])
     print([a++" "++ show random | a<-adj, random<-[1 .. 10]])
+
+    print(take 3(cycle[1,3,5]))
+    print(take 6 (cycle "practice"))
+    print(take 2 (repeat 6))
+    let twice=[x*2 | x<-[1..10]]
+    let multipleof13=[x | x<-[0..100], x `mod` 13==0]
+    print(twice)
+    print(multipleof13)
+    print(fst(twice, multipleof13))
+    print(snd(twice, multipleof13))
+
+    print(zip [1..5]["one", "three", "six"])
+    let righttriangle=[ (a,b,c) | a<-[1..10], b<-[1..10], c<-[1..10], a*a+b*b==c*c ]
+    print(righttriangle)
+    
+    
