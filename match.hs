@@ -23,6 +23,14 @@ second(_,x,_)=x
 third :: (a,b,c)->c
 third(_,_,x)=x
 
+len' :: (Num b)=>[a]->b
+len' []=0
+len' (_:xs)=1+len' xs
+
+capital :: String->String
+capital ""="Empty string"
+capital all@(x:xs)="1 st elem of" ++ all ++ ":" ++ [x]
+
 
 main :: IO()
 main = do
@@ -30,5 +38,8 @@ main = do
 
     print(factorial 1)
     print(factorial 3)
+    print(len' "string length")
+    print(capital "string")
+
 
     
