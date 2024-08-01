@@ -1,11 +1,16 @@
 
-factorial :: (Eq, Num p) => p -> p
+factorial :: Integer -> Integer 
 factorial 0 = 1
-factorial x = x * factorial (x-1)
+factorial n = n * factorial (n-1) 
 
-factorial' :: (Eq, Num p)=> a -> p 
+factorial' :: Integer -> Integer
+factorial' n = go n 1 
+  where 
+    go 0 acc = acc 
+    go 1 acc = go (n-1)(n*acc)
 
 
+f :: Integer -> (Char -> Bool)
 
 magnitude :: Floating a => [a] ->a 
 magnitude = sqrt . sumofsquares
@@ -25,12 +30,11 @@ findValue v Empty = False
 findValue v (Leaf a) = v == a 
 findValue v (Node l r) =  findValue l ||  findValue r 
 
-class Foldable Tree where
-   foldmap :: Monoid m => (a->m) -> Tree a -> m 
-   foldmap _ Empty = mempty
-   foldmap f (Leaf a) = f a 
-   foldmap f (Node l r) = foldmap f l `mappend` foldmap f m 
-
+instance Foldable Tree where
+    foldMap _ Empty = mempty
+    foldMap f (Leaf a) = f a
+    foldMap f (Node l r) = foldMap f l `mappend` foldMap f r
+  
 alleven :: Integral a => Tree a -> Bool 
 alleven = foldr (\x acc -> even x && acc ) True 
 
@@ -98,6 +102,29 @@ buildEnv = do
     val <- getLine 
     let temp = read val :: Int 
     buildEnv ((var, val) : acc)
+
+numbers :: [int]
+numbers = [1,2,3,4,5]
+
+doubled :: [Int]
+doubled = fmap (*2) numbers 
+
+doubled' = (*2) <$> numbers
+
+maybenumber :: Maybe Int 
+maybenumber = Just 5 
+
+result :: Maybe Int 
+result = fmap (+1) maybenumber
+result' = (+1) <$> maybenumber 
+
+noNumber :: Maybe Int 
+noNumber = Nothing 
+
+resultnothing :: Maybe Int 
+resultnothing = (+1) <$> noNumber 
+
+
 
 
                     
