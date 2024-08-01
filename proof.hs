@@ -32,4 +32,27 @@ append'' xs ys = appendhelper xs ys
         appendhelper (x:xs) ys acc = appendhelper xs ys (x:acc)
 
 
-        
+contains' :: [Int] -> Int -> Bool 
+contains' [] _ =False 
+contains' (x:xs) n 
+    | x == n = True 
+    | otherwise = contains' xs n 
+
+contains'' :: [Int] -> Int -> Bool 
+contains'' xs n = containhelper xs n 
+    where 
+        containhelper [] _ = False 
+        containhelper (x:xs) n 
+        | x == n = True     
+        | otherwise = containhelper xs n 
+
+reverse' :: [a] -> a 
+reverse' [] = []
+reverse' (x:xs) = reverse' xs ++ [x]
+
+reverse'' :: [a] -> a 
+reverse'' xs = reversehelper xs [] 
+    where 
+        reversehelper [] acc = acc 
+        reversehelper (x:xs) acc = reversehelper xs (x:acc)
+ 
