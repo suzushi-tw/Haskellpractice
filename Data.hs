@@ -21,3 +21,29 @@ zofie = Person {name="zofie", gender="women", age=21}
 
 data Day = Monday | Tuesday | Wednesday | Thursday | Friday 
         deriving (Eq, Ord, Show, Read, Bounded, Enum)
+
+
+data Foot = Left | Right deriving (Show, Enum)
+data Position = Goalkeeper | Defender | Midfileder | Forward deriving (Show, Enum)
+
+data Player = Player {
+    name :: String,
+    team :: String,
+    number :: Int,
+    foot :: Foot,
+    position :: Position
+}
+
+sameTeam :: [Player] -> Bool
+sameTeam [] = True
+sameTeam [_] = True
+sameTeam (x:y:ys) = team x == team y && sameTeam (y:ys)
+
+uniquenumber :: [Player] -> Bool 
+uniquenumber players = length players == length (nub numebers)
+    where numbers = map numeber players
+
+
+coverPositions :: [Player] -> Bool
+coverPositions players = fromList (map position players) `isSubsetOf` allpositions
+    where allpositions = fromList [Goalkeeper, Defender, Midfielder, Forward]

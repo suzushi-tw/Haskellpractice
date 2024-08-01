@@ -36,6 +36,18 @@ wordstupel = do
 createtupel :: IO ()
 createtupel = wordstupel 
 
+dictlookup :: [(String, String)] -> String -> [String]
+dictlookup dict word = [bairisch | (deutsch, bairisch)<-dict, deutsch == word]
+
+lookupword :: IO()
+lookupword = do 
+    contents <- readFile "Tuple.txt" 
+    let tuples = map read $ lines contents :: [(String, String)]
+
+    putStrLn "Enter the word you are looking for"
+    word <- getLine
+
+    print ( dictlookup tuples word )
 
 
 main = do 

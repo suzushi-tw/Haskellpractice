@@ -1,2 +1,4 @@
-(hi,servus)
-(,)
+("Vater","voda")
+("hallo","servus")
+("gut","guad")
+("hallo","grias di")
